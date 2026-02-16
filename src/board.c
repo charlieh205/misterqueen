@@ -313,11 +313,16 @@ void board_load_fen(Board *board, char *fen) {
     board->hash ^= HASH_CASTLE[board->castle];
     board->pawn_hash ^= HASH_CASTLE[CASTLE_ALL];
     board->pawn_hash ^= HASH_CASTLE[board->castle];
-    i++;
-    if (fen[i] == '-') {
+    if (i < n && fen[i] == '-') {
+        i++; // Skip '-' castling marker to reach space
+    }
+    if (i < n && fen[i] == ' ') {
+        i++; // Skip space to reach EP field
+    }
+    if (i < n && fen[i] == '-') {
         i++;
     }
-    else if (fen[i] >= 'a' && fen[i] <= 'h') {
+    else if (i < n && fen[i] >= 'a' && fen[i] <= 'h') {
         int ep_file = fen[i] - 'a';
         i++;
         if (fen[i] >= '1' && fen[i] <= '8') {

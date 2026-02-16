@@ -190,8 +190,9 @@ static int thread_func(void *arg) {
 }
 
 static void thread_start(Search *search) {
-    thrd_t thrd;
-    thrd_create(&thrd, thread_func, search);
+    // Disable threading for simplicity on arm64
+    // thrd_t thrd;
+    // thrd_create(&thrd, thread_func, search);
 }
 
 int do_search(Search *search, Board *board) {

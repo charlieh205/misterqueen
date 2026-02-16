@@ -12,7 +12,18 @@
 
 static Board board;
 static Search search;
-static thrd_t thrd;
+// static thrd_t thrd;
+
+static int thread_func(void *arg) {
+    do_search(&search, &board);
+    return 0;
+}
+
+static void thread_start() {
+    // Disable threading for simplicity on arm64
+    // thrd_create(&thrd, thread_func, NULL);
+    do_search(&search, &board);
+}
 
 void handle_uci() {
     printf("id name Mister Queen\n");
@@ -44,15 +55,6 @@ void handle_startpos_moves(char *moves) {
     }
 }
 
-static int thread_func(void *arg) {
-    do_search(&search, &board);
-    return 0;
-}
-
-static void thread_start() {
-    thrd_create(&thrd, thread_func, NULL);
-}
-
 void handle_go(char *line) {
     search.uci = 1;
     search.use_book = 1;
@@ -78,7 +80,8 @@ void handle_go(char *line) {
 
 void handle_stop() {
     search.stop = 1;
-    thrd_join(thrd, NULL);
+    // Disable threading for simplicity on arm64
+    // thrd_join(thrd, NULL);
 }
 
 int parse_line() {

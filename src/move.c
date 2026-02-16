@@ -55,7 +55,10 @@ void do_move(Board *board, Move *move, Undo *undo) {
         bb src = BIT(move->src);
         bb dst = BIT(move->dst);
         if ((src & 0x000000000000ff00L) && (dst & 0x00000000ff000000L)) {
-            board->ep = BIT(move->src + 8);
+            bb adj = ((dst >> 1) & 0xfefefefefefefefeL) | ((dst << 1) & 0x7f7f7f7f7f7f7f7fL);
+            if (adj & board->black_pawns) {
+                board->ep = BIT(move->src + 8);
+            }
         }
         if (dst == undo->ep) {
             board_set(board, move->dst - 8, EMPTY);
@@ -65,7 +68,10 @@ void do_move(Board *board, Move *move, Undo *undo) {
         bb src = BIT(move->src);
         bb dst = BIT(move->dst);
         if ((src & 0x00ff000000000000L) && (dst & 0x000000ff00000000L)) {
-            board->ep = BIT(move->src - 8);
+            bb adj = ((dst >> 1) & 0xfefefefefefefefeL) | ((dst << 1) & 0x7f7f7f7f7f7f7f7fL);
+            if (adj & board->white_pawns) {
+                board->ep = BIT(move->src - 8);
+            }
         }
         if (dst == undo->ep) {
             board_set(board, move->dst + 8, EMPTY);
