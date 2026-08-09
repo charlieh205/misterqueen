@@ -59,7 +59,7 @@ void do_move (Board * board, Move * move, Undo * undo)
         board_set(board, move->dst, undo->piece);
     }
     board->ep = 0L;
-    if (undo->piece == WHITE_BOARD_PAWN)
+    if (undo->piece == BOARD_WHITE_PAWN)
     {
         bb src = BIT(move->src);
         bb dst = BIT(move->dst);
@@ -85,18 +85,18 @@ void do_move (Board * board, Move * move, Undo * undo)
             board_set(board, move->dst + 8, BOARD_EMPTY);
         }
     }
-    else if (undo->piece == WHITE_BOARD_KING)
+    else if (undo->piece == BOARD_WHITE_KING)
     {
         board->castle &= ~BOARD_CASTLE_MASK_WHITE;
         if (move->src == 4 && move->dst == 6)
         {
             board_set(board, 7, BOARD_EMPTY);
-            board_set(board, 5, WHITE_BOARD_ROOK);
+            board_set(board, 5, BOARD_WHITE_ROOK);
         }
         else if (move->src == 4 && move->dst == 2)
         {
             board_set(board, 0, BOARD_EMPTY);
-            board_set(board, 3, WHITE_BOARD_ROOK);
+            board_set(board, 3, BOARD_WHITE_ROOK);
         }
     }
     else if (undo->piece == BOARD_BLACK_KING)
@@ -142,7 +142,7 @@ void undo_move (Board * board, Move * move, Undo * undo)
     board_set(board, move->dst, undo->capture);
     board->castle = undo->castle;
     board->ep     = undo->ep;
-    if (undo->piece == WHITE_BOARD_PAWN)
+    if (undo->piece == BOARD_WHITE_PAWN)
     {
         if ((bb)BIT(move->dst) == undo->ep)
         {
@@ -153,19 +153,19 @@ void undo_move (Board * board, Move * move, Undo * undo)
     {
         if ((bb)BIT(move->dst) == undo->ep)
         {
-            board_set(board, move->dst + 8, WHITE_BOARD_PAWN);
+            board_set(board, move->dst + 8, BOARD_WHITE_PAWN);
         }
     }
-    else if (undo->piece == WHITE_BOARD_KING)
+    else if (undo->piece == BOARD_WHITE_KING)
     {
         if (move->src == 4 && move->dst == 6)
         {
-            board_set(board, 7, WHITE_BOARD_ROOK);
+            board_set(board, 7, BOARD_WHITE_ROOK);
             board_set(board, 5, BOARD_EMPTY);
         }
         else if (move->src == 4 && move->dst == 2)
         {
-            board_set(board, 0, WHITE_BOARD_ROOK);
+            board_set(board, 0, BOARD_WHITE_ROOK);
             board_set(board, 3, BOARD_EMPTY);
         }
     }
