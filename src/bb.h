@@ -1,15 +1,28 @@
 #ifndef BB_H
 #define BB_H
 
-#define BIT(sq) (1L << (sq))
+enum
+{
+    HASH_EP_SIZE       = 8,
+    HASH_CASTLE_SIZE   = 16,
+    BB_BOARD_SIZE      = 64,
+    ATTACK_BISHOP_SIZE = 5248,
+    ATTACK_ROOK_SIZE   = 102400,
+};
+
+#define BIT(sq)        (1L << (sq))
 #define RF(rank, file) ((rank) * 8 + (file))
 
-#define LSB(x) (__builtin_ctzll(x))
-#define MSB(x) (__builtin_clzll(x))
+#define LSB(x)  (__builtin_ctzll(x))
+#define MSB(x)  (__builtin_clzll(x))
 #define BITS(x) (__builtin_popcountll(x))
 
-#define POP_LSB(b, x) b = LSB(x); x &= ~BIT(b);
-#define POP_MSB(b, x) b = MSB(x); x &= ~BIT(b);
+#define POP_LSB(b, x)                                                                                                  \
+    (b)  = LSB((x));                                                                                                   \
+    (x) &= ~BIT(b);
+#define POP_MSB(b, x)                                                                                                  \
+    (b)  = MSB((x));                                                                                                   \
+    (x) &= ~BIT((b));
 
 #define RANK_1 0x00000000000000ffL
 #define RANK_2 0x000000000000ff00L
@@ -31,46 +44,48 @@
 
 typedef unsigned long long bb;
 
-extern bb BB_KNIGHT[64];
-extern bb BB_KING[64];
+// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
+extern bb BB_KNIGHT[BB_BOARD_SIZE];
+extern bb BB_KING[BB_BOARD_SIZE];
 
-extern bb BB_BISHOP_6[64];
-extern bb BB_ROOK_6[64];
+extern bb BB_BISHOP_6[BB_BOARD_SIZE];
+extern bb BB_ROOK_6[BB_BOARD_SIZE];
 
-extern const bb MAGIC_BISHOP[64];
-extern const bb MAGIC_ROOK[64];
+extern const bb MAGIC_BISHOP[BB_BOARD_SIZE];
+extern const bb MAGIC_ROOK[BB_BOARD_SIZE];
 
-extern const int SHIFT_BISHOP[64];
-extern const int SHIFT_ROOK[64];
+extern const int SHIFT_BISHOP[BB_BOARD_SIZE];
+extern const int SHIFT_ROOK[BB_BOARD_SIZE];
 
-extern int OFFSET_BISHOP[64];
-extern int OFFSET_ROOK[64];
+extern int OFFSET_BISHOP[BB_BOARD_SIZE];
+extern int OFFSET_ROOK[BB_BOARD_SIZE];
 
-extern bb ATTACK_BISHOP[5248];
-extern bb ATTACK_ROOK[102400];
+extern bb ATTACK_BISHOP[ATTACK_BISHOP_SIZE];
+extern bb ATTACK_ROOK[ATTACK_ROOK_SIZE];
 
-extern bb HASH_WHITE_PAWN[64];
-extern bb HASH_BLACK_PAWN[64];
-extern bb HASH_WHITE_KNIGHT[64];
-extern bb HASH_BLACK_KNIGHT[64];
-extern bb HASH_WHITE_BISHOP[64];
-extern bb HASH_BLACK_BISHOP[64];
-extern bb HASH_WHITE_ROOK[64];
-extern bb HASH_BLACK_ROOK[64];
-extern bb HASH_WHITE_QUEEN[64];
-extern bb HASH_BLACK_QUEEN[64];
-extern bb HASH_WHITE_KING[64];
-extern bb HASH_BLACK_KING[64];
-extern bb HASH_CASTLE[16];
-extern bb HASH_EP[8];
+extern bb HASH_WHITE_PAWN[BB_BOARD_SIZE];
+extern bb HASH_BLACK_PAWN[BB_BOARD_SIZE];
+extern bb HASH_WHITE_KNIGHT[BB_BOARD_SIZE];
+extern bb HASH_BLACK_KNIGHT[BB_BOARD_SIZE];
+extern bb HASH_WHITE_BISHOP[BB_BOARD_SIZE];
+extern bb HASH_BLACK_BISHOP[BB_BOARD_SIZE];
+extern bb HASH_WHITE_ROOK[BB_BOARD_SIZE];
+extern bb HASH_BLACK_ROOK[BB_BOARD_SIZE];
+extern bb HASH_WHITE_QUEEN[BB_BOARD_SIZE];
+extern bb HASH_BLACK_QUEEN[BB_BOARD_SIZE];
+extern bb HASH_WHITE_KING[BB_BOARD_SIZE];
+extern bb HASH_BLACK_KING[BB_BOARD_SIZE];
+extern bb HASH_CASTLE[HASH_CASTLE_SIZE];
+extern bb HASH_EP[HASH_EP_SIZE];
 extern bb HASH_COLOR;
+// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
-void bb_init();
-void bb_print(bb value);
-bb bb_random();
+void bb_init (void);
+void bb_print (bb value);
+bb   bb_random (void);
 
-bb bb_bishop(int sq, bb obstacles);
-bb bb_rook(int sq, bb obstacles);
-bb bb_queen(int sq, bb obstacles);
+bb bb_bishop (int square, bb obstacles);
+bb bb_rook (int square, bb obstacles);
+bb bb_queen (int square, bb obstacles);
 
 #endif
