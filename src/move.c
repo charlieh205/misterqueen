@@ -231,28 +231,28 @@ int score_move (Board * board, Move * move)
         switch (PIECE(piece))
         {
         case BOARD_PAWN:
-            result -= POSITION_WHITE_BOARD_PAWN[src];
-            result += POSITION_WHITE_BOARD_PAWN[dst];
+            result -= BOARD_POSITION_WHITE_PAWN[src];
+            result += BOARD_POSITION_WHITE_PAWN[dst];
             break;
         case BOARD_KNIGHT:
-            result -= POSITION_WHITE_BOARD_KNIGHT[src];
-            result += POSITION_WHITE_BOARD_KNIGHT[dst];
+            result -= BOARD_POSITION_WHITE_KNIGHT[src];
+            result += BOARD_POSITION_WHITE_KNIGHT[dst];
             break;
         case BOARD_BISHOP:
-            result -= POSITION_WHITE_BOARD_BISHOP[src];
-            result += POSITION_WHITE_BOARD_BISHOP[dst];
+            result -= BOARD_POSITION_WHITE_BISHOP[src];
+            result += BOARD_POSITION_WHITE_BISHOP[dst];
             break;
         case BOARD_ROOK:
-            result -= POSITION_WHITE_BOARD_ROOK[src];
-            result += POSITION_WHITE_BOARD_ROOK[dst];
+            result -= BOARD_POSITION_WHITE_ROOK[src];
+            result += BOARD_POSITION_WHITE_ROOK[dst];
             break;
         case BOARD_QUEEN:
-            result -= POSITION_WHITE_BOARD_QUEEN[src];
-            result += POSITION_WHITE_BOARD_QUEEN[dst];
+            result -= BOARD_POSITION_WHITE_QUEEN[src];
+            result += BOARD_POSITION_WHITE_QUEEN[dst];
             break;
         case BOARD_KING:
-            result -= POSITION_WHITE_BOARD_KING[src];
-            result += POSITION_WHITE_BOARD_KING[dst];
+            result -= BOARD_POSITION_WHITE_KING[src];
+            result += BOARD_POSITION_WHITE_KING[dst];
             break;
         }
     }
@@ -294,27 +294,27 @@ int score_move (Board * board, Move * move)
             {
             case BOARD_PAWN:
                 capture_material  = BOARD_MATERIAL_PAWN;
-                result           += POSITION_WHITE_BOARD_PAWN[dst];
+                result           += BOARD_POSITION_WHITE_PAWN[dst];
                 break;
             case BOARD_KNIGHT:
                 capture_material  = BOARD_MATERIAL_KNIGHT;
-                result           += POSITION_WHITE_BOARD_KNIGHT[dst];
+                result           += BOARD_POSITION_WHITE_KNIGHT[dst];
                 break;
             case BOARD_BISHOP:
                 capture_material  = BOARD_MATERIAL_BISHOP;
-                result           += POSITION_WHITE_BOARD_BISHOP[dst];
+                result           += BOARD_POSITION_WHITE_BISHOP[dst];
                 break;
             case BOARD_ROOK:
                 capture_material  = BOARD_MATERIAL_ROOK;
-                result           += POSITION_WHITE_BOARD_ROOK[dst];
+                result           += BOARD_POSITION_WHITE_ROOK[dst];
                 break;
             case BOARD_QUEEN:
                 capture_material  = BOARD_MATERIAL_QUEEN;
-                result           += POSITION_WHITE_BOARD_QUEEN[dst];
+                result           += BOARD_POSITION_WHITE_QUEEN[dst];
                 break;
             case BOARD_KING:
                 capture_material  = BOARD_MATERIAL_KING;
-                result           += POSITION_WHITE_BOARD_KING[dst];
+                result           += BOARD_POSITION_WHITE_KING[dst];
                 break;
             }
         }
