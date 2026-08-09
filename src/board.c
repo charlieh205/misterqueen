@@ -71,7 +71,7 @@ void board_set (Board * board, int sq, int piece)
                 board->black_rooks    &= mask;
                 board->black_material -= BOARD_MATERIAL_ROOK;
                 board->black_position -= BOARD_POSITION_BLACK_ROOK[sq];
-                board->hash           ^= HASH_BLACK_ROOK
+                board->hash           ^= HASH_BLACK_ROOK[sq];
                 break;
             case BOARD_QUEEN:
                 board->black_queens   &= mask;
@@ -166,7 +166,7 @@ void board_set (Board * board, int sq, int piece)
                 board->black_rooks    |= bit;
                 board->black_material += BOARD_MATERIAL_ROOK;
                 board->black_position += BOARD_POSITION_BLACK_ROOK[sq];
-                board->hash           ^= HASH_BLACK_ROOK
+                board->hash           ^= HASH_BLACK_ROOK[sq];
                 break;
             case BOARD_QUEEN:
                 board->black_queens   |= bit;
@@ -211,7 +211,7 @@ void board_set (Board * board, int sq, int piece)
                 board->white_rooks    |= bit;
                 board->white_material += BOARD_MATERIAL_ROOK;
                 board->white_position += BOARD_POSITION_WHITE_ROOK[sq];
-                board->hash           ^= HASH_BOARD_WHITE_ROOK[sq];
+                board->hash           ^= HASH_WHITE_ROOK[sq];
                 break;
             case BOARD_QUEEN:
                 board->white_queens   |= bit;
