@@ -28,7 +28,7 @@ int gen_knight_moves (Move * moves, bb srcs, bb mask)
     while (srcs)
     {
         POP_LSB(src, srcs);
-        bb dsts = BB_BOARD_KNIGHT[src] & mask;
+        bb dsts = BB_KNIGHT[src] & mask;
         while (dsts)
         {
             POP_LSB(dst, dsts);
