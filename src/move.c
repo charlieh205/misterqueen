@@ -196,126 +196,126 @@ int score_move (Board * board, Move * move)
     int piece            = board->squares[src];
     int capture          = board->squares[dst];
     int capture_material = 0;
-    if (COLOR(piece))
+    if (IS_BLACK(piece))
     {
         switch (PIECE(piece))
         {
-        case BOARD_PAWN:
-            result -= BOARD_POSITION_BLACK_PAWN[src];
-            result += BOARD_POSITION_BLACK_PAWN[dst];
-            break;
-        case BOARD_KNIGHT:
-            result -= BOARD_POSITION_BLACK_KNIGHT[src];
-            result += BOARD_POSITION_BLACK_KNIGHT[dst];
-            break;
-        case BOARD_BISHOP:
-            result -= BOARD_POSITION_BLACK_BISHOP[src];
-            result += BOARD_POSITION_BLACK_BISHOP[dst];
-            break;
-        case BOARD_ROOK:
-            result -= BOARD_POSITION_BLACK_ROOK[src];
-            result += BOARD_POSITION_BLACK_ROOK[dst];
-            break;
-        case BOARD_QUEEN:
-            result -= BOARD_POSITION_BLACK_QUEEN[src];
-            result += BOARD_POSITION_BLACK_QUEEN[dst];
-            break;
-        case BOARD_KING:
-            result -= BOARD_POSITION_BLACK_KING[src];
-            result += BOARD_POSITION_BLACK_KING[dst];
-            break;
+            case BOARD_PAWN:
+                result -= BOARD_POSITION_BLACK_PAWN[src];
+                result += BOARD_POSITION_BLACK_PAWN[dst];
+                break;
+            case BOARD_KNIGHT:
+                result -= BOARD_POSITION_BLACK_KNIGHT[src];
+                result += BOARD_POSITION_BLACK_KNIGHT[dst];
+                break;
+            case BOARD_BISHOP:
+                result -= BOARD_POSITION_BLACK_BISHOP[src];
+                result += BOARD_POSITION_BLACK_BISHOP[dst];
+                break;
+            case BOARD_ROOK:
+                result -= BOARD_POSITION_BLACK_ROOK[src];
+                result += BOARD_POSITION_BLACK_ROOK[dst];
+                break;
+            case BOARD_QUEEN:
+                result -= BOARD_POSITION_BLACK_QUEEN[src];
+                result += BOARD_POSITION_BLACK_QUEEN[dst];
+                break;
+            case BOARD_KING:
+                result -= BOARD_POSITION_BLACK_KING[src];
+                result += BOARD_POSITION_BLACK_KING[dst];
+                break;
         }
     }
     else
     {
         switch (PIECE(piece))
         {
-        case BOARD_PAWN:
-            result -= BOARD_POSITION_WHITE_PAWN[src];
-            result += BOARD_POSITION_WHITE_PAWN[dst];
-            break;
-        case BOARD_KNIGHT:
-            result -= BOARD_POSITION_WHITE_KNIGHT[src];
-            result += BOARD_POSITION_WHITE_KNIGHT[dst];
-            break;
-        case BOARD_BISHOP:
-            result -= BOARD_POSITION_WHITE_BISHOP[src];
-            result += BOARD_POSITION_WHITE_BISHOP[dst];
-            break;
-        case BOARD_ROOK:
-            result -= BOARD_POSITION_WHITE_ROOK[src];
-            result += BOARD_POSITION_WHITE_ROOK[dst];
-            break;
-        case BOARD_QUEEN:
-            result -= BOARD_POSITION_WHITE_QUEEN[src];
-            result += BOARD_POSITION_WHITE_QUEEN[dst];
-            break;
-        case BOARD_KING:
-            result -= BOARD_POSITION_WHITE_KING[src];
-            result += BOARD_POSITION_WHITE_KING[dst];
-            break;
+            case BOARD_PAWN:
+                result -= BOARD_POSITION_WHITE_PAWN[src];
+                result += BOARD_POSITION_WHITE_PAWN[dst];
+                break;
+            case BOARD_KNIGHT:
+                result -= BOARD_POSITION_WHITE_KNIGHT[src];
+                result += BOARD_POSITION_WHITE_KNIGHT[dst];
+                break;
+            case BOARD_BISHOP:
+                result -= BOARD_POSITION_WHITE_BISHOP[src];
+                result += BOARD_POSITION_WHITE_BISHOP[dst];
+                break;
+            case BOARD_ROOK:
+                result -= BOARD_POSITION_WHITE_ROOK[src];
+                result += BOARD_POSITION_WHITE_ROOK[dst];
+                break;
+            case BOARD_QUEEN:
+                result -= BOARD_POSITION_WHITE_QUEEN[src];
+                result += BOARD_POSITION_WHITE_QUEEN[dst];
+                break;
+            case BOARD_KING:
+                result -= BOARD_POSITION_WHITE_KING[src];
+                result += BOARD_POSITION_WHITE_KING[dst];
+                break;
         }
     }
     if (capture)
     {
-        if (COLOR(capture))
+        if (IS_BLACK(capture))
         {
             switch (PIECE(capture))
             {
-            case BOARD_PAWN:
-                capture_material  = BOARD_MATERIAL_PAWN;
-                result           += BOARD_POSITION_BLACK_PAWN[dst];
-                break;
-            case BOARD_KNIGHT:
-                capture_material  = BOARD_MATERIAL_KNIGHT;
-                result           += BOARD_POSITION_BLACK_KNIGHT[dst];
-                break;
-            case BOARD_BISHOP:
-                capture_material  = BOARD_MATERIAL_BISHOP;
-                result           += BOARD_POSITION_BLACK_BISHOP[dst];
-                break;
-            case BOARD_ROOK:
-                capture_material  = BOARD_MATERIAL_ROOK;
-                result           += BOARD_POSITION_BLACK_ROOK[dst];
-                break;
-            case BOARD_QUEEN:
-                capture_material  = BOARD_MATERIAL_QUEEN;
-                result           += BOARD_POSITION_BLACK_QUEEN[dst];
-                break;
-            case BOARD_KING:
-                capture_material  = BOARD_MATERIAL_KING;
-                result           += BOARD_POSITION_BLACK_KING[dst];
-                break;
+                case BOARD_PAWN:
+                    capture_material  = BOARD_MATERIAL_PAWN;
+                    result           += BOARD_POSITION_BLACK_PAWN[dst];
+                    break;
+                case BOARD_KNIGHT:
+                    capture_material  = BOARD_MATERIAL_KNIGHT;
+                    result           += BOARD_POSITION_BLACK_KNIGHT[dst];
+                    break;
+                case BOARD_BISHOP:
+                    capture_material  = BOARD_MATERIAL_BISHOP;
+                    result           += BOARD_POSITION_BLACK_BISHOP[dst];
+                    break;
+                case BOARD_ROOK:
+                    capture_material  = BOARD_MATERIAL_ROOK;
+                    result           += BOARD_POSITION_BLACK_ROOK[dst];
+                    break;
+                case BOARD_QUEEN:
+                    capture_material  = BOARD_MATERIAL_QUEEN;
+                    result           += BOARD_POSITION_BLACK_QUEEN[dst];
+                    break;
+                case BOARD_KING:
+                    capture_material  = BOARD_MATERIAL_KING;
+                    result           += BOARD_POSITION_BLACK_KING[dst];
+                    break;
             }
         }
         else
         {
             switch (PIECE(capture))
             {
-            case BOARD_PAWN:
-                capture_material  = BOARD_MATERIAL_PAWN;
-                result           += BOARD_POSITION_WHITE_PAWN[dst];
-                break;
-            case BOARD_KNIGHT:
-                capture_material  = BOARD_MATERIAL_KNIGHT;
-                result           += BOARD_POSITION_WHITE_KNIGHT[dst];
-                break;
-            case BOARD_BISHOP:
-                capture_material  = BOARD_MATERIAL_BISHOP;
-                result           += BOARD_POSITION_WHITE_BISHOP[dst];
-                break;
-            case BOARD_ROOK:
-                capture_material  = BOARD_MATERIAL_ROOK;
-                result           += BOARD_POSITION_WHITE_ROOK[dst];
-                break;
-            case BOARD_QUEEN:
-                capture_material  = BOARD_MATERIAL_QUEEN;
-                result           += BOARD_POSITION_WHITE_QUEEN[dst];
-                break;
-            case BOARD_KING:
-                capture_material  = BOARD_MATERIAL_KING;
-                result           += BOARD_POSITION_WHITE_KING[dst];
-                break;
+                case BOARD_PAWN:
+                    capture_material  = BOARD_MATERIAL_PAWN;
+                    result           += BOARD_POSITION_WHITE_PAWN[dst];
+                    break;
+                case BOARD_KNIGHT:
+                    capture_material  = BOARD_MATERIAL_KNIGHT;
+                    result           += BOARD_POSITION_WHITE_KNIGHT[dst];
+                    break;
+                case BOARD_BISHOP:
+                    capture_material  = BOARD_MATERIAL_BISHOP;
+                    result           += BOARD_POSITION_WHITE_BISHOP[dst];
+                    break;
+                case BOARD_ROOK:
+                    capture_material  = BOARD_MATERIAL_ROOK;
+                    result           += BOARD_POSITION_WHITE_ROOK[dst];
+                    break;
+                case BOARD_QUEEN:
+                    capture_material  = BOARD_MATERIAL_QUEEN;
+                    result           += BOARD_POSITION_WHITE_QUEEN[dst];
+                    break;
+                case BOARD_KING:
+                    capture_material  = BOARD_MATERIAL_KING;
+                    result           += BOARD_POSITION_WHITE_KING[dst];
+                    break;
             }
         }
         result += capture_material;
@@ -337,18 +337,18 @@ void move_to_string (Move * move, char * str)
     {
         switch (move->promotion)
         {
-        case BOARD_KNIGHT:
-            *str++ = 'n';
-            break;
-        case BOARD_BISHOP:
-            *str++ = 'b';
-            break;
-        case BOARD_ROOK:
-            *str++ = 'r';
-            break;
-        case BOARD_QUEEN:
-            *str++ = 'q';
-            break;
+            case BOARD_KNIGHT:
+                *str++ = 'n';
+                break;
+            case BOARD_BISHOP:
+                *str++ = 'b';
+                break;
+            case BOARD_ROOK:
+                *str++ = 'r';
+                break;
+            case BOARD_QUEEN:
+                *str++ = 'q';
+                break;
         }
     }
     *str++ = 0;
@@ -365,18 +365,18 @@ void move_from_string (Move * move, const char * str)
     int promotion = BOARD_EMPTY;
     switch (str[4])
     {
-    case 'n':
-        promotion = BOARD_KNIGHT;
-        break;
-    case 'b':
-        promotion = BOARD_BISHOP;
-        break;
-    case 'r':
-        promotion = BOARD_ROOK;
-        break;
-    case 'q':
-        promotion = BOARD_QUEEN;
-        break;
+        case 'n':
+            promotion = BOARD_KNIGHT;
+            break;
+        case 'b':
+            promotion = BOARD_BISHOP;
+            break;
+        case 'r':
+            promotion = BOARD_ROOK;
+            break;
+        case 'q':
+            promotion = BOARD_QUEEN;
+            break;
     }
     move->src       = src;
     move->dst       = dst;
@@ -490,21 +490,21 @@ void notate_move (Board * board, Move * move, char * result)
         // piece
         switch (PIECE(piece))
         {
-        case BOARD_KNIGHT:
-            *result++ = 'N';
-            break;
-        case BOARD_BISHOP:
-            *result++ = 'B';
-            break;
-        case BOARD_ROOK:
-            *result++ = 'R';
-            break;
-        case BOARD_QUEEN:
-            *result++ = 'Q';
-            break;
-        case BOARD_KING:
-            *result++ = 'K';
-            break;
+            case BOARD_KNIGHT:
+                *result++ = 'N';
+                break;
+            case BOARD_BISHOP:
+                *result++ = 'B';
+                break;
+            case BOARD_ROOK:
+                *result++ = 'R';
+                break;
+            case BOARD_QUEEN:
+                *result++ = 'Q';
+                break;
+            case BOARD_KING:
+                *result++ = 'K';
+                break;
         }
         // source
         if (show_file1)
@@ -529,18 +529,18 @@ void notate_move (Board * board, Move * move, char * result)
             *result++ = '=';
             switch (move->promotion)
             {
-            case BOARD_KNIGHT:
-                *result++ = 'N';
-                break;
-            case BOARD_BISHOP:
-                *result++ = 'B';
-                break;
-            case BOARD_ROOK:
-                *result++ = 'R';
-                break;
-            case BOARD_QUEEN:
-                *result++ = 'Q';
-                break;
+                case BOARD_KNIGHT:
+                    *result++ = 'N';
+                    break;
+                case BOARD_BISHOP:
+                    *result++ = 'B';
+                    break;
+                case BOARD_ROOK:
+                    *result++ = 'R';
+                    break;
+                case BOARD_QUEEN:
+                    *result++ = 'Q';
+                    break;
             }
         }
     }

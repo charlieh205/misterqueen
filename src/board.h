@@ -61,8 +61,8 @@ enum
     BOARD_MATERIAL_KING   = 20000
 };
 
-#define PIECE(x) ((x) & 0x0f)
-#define COLOR(x) ((x) & 0x10)
+#define PIECE(x)    ((x) & 0x0f)
+#define IS_BLACK(x) (0 < ((x) & 0x10))
 
 extern const int BOARD_POSITION_WHITE_PAWN[BOARD_SQUARE_COUNT];
 extern const int BOARD_POSITION_WHITE_KNIGHT[BOARD_SQUARE_COUNT];

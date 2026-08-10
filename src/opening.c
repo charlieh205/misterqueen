@@ -139,12 +139,12 @@ void handle_line (Node * root, char * line)
     int result = 0;
     switch (line[0])
     {
-    case 'W':
-        result = 1;
-        break;
-    case 'B':
-        result = -1;
-        break;
+        case 'W':
+            result = 1;
+            break;
+        case 'B':
+            result = -1;
+            break;
     }
     Node * node = root;
     node_result(node, result);
