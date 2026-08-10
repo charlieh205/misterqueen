@@ -11,7 +11,7 @@ enum
 };
 
 #define BIT(sq)        (1L << (sq))
-#define RF(rank, file) ((rank) * 8 + (file))
+#define RF(rank, file) (((rank) * 8) + (file))
 
 #define LSB(x)  (__builtin_ctzll(x))
 #define MSB(x)  (__builtin_clzll(x))
